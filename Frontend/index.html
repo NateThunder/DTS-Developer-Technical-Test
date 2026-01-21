@@ -9,8 +9,10 @@
     <link rel="stylesheet" href="/static/styles.css">
   </head>
   <body class="govuk-template__body">
+    <!-- Skip link for keyboard users -->
     <a class="govuk-skip-link" href="#content">Skip to main content</a>
 
+    <!-- Site header -->
     <header class="govuk-header" role="banner">
       <div class="govuk-width-container govuk-header__container">
         <div class="govuk-header__logo">
@@ -20,6 +22,7 @@
       </div>
     </header>
 
+    <!-- Main content -->
     <main id="content" class="govuk-main-wrapper" role="main">
       <div class="govuk-width-container">
         <div class="govuk-grid-row">
@@ -28,6 +31,7 @@
             <p class="govuk-body">
             </p>
 
+            <!-- Contents nav -->
             <aside class="govuk-contents-list" aria-label="Contents">
               <h2 class="govuk-heading-m">Contents</h2>
               <ol class="govuk-contents-list__list">
@@ -36,6 +40,7 @@
               </ol>
             </aside>
 
+            <!-- Task creation form -->
             <section id="create-task" class="app-card">
               <h2 class="govuk-heading-l">Create a task</h2>
               <p class="govuk-body">Use this form to add a new task. Due date and time are required.</p>
@@ -79,6 +84,7 @@
               </form>
             </section>
 
+            <!-- Task management, filters, and table -->
             <section id="manage-tasks" class="app-card">
               <div class="app-card__header">
                 <h2 class="govuk-heading-l">Manage tasks</h2>
@@ -87,6 +93,7 @@
                 </div>
               </div>
 
+              <!-- Filters -->
               <form id="filters" class="app-filters">
                 <div class="govuk-form-group">
                   <label class="govuk-label" for="search-id">Task ID</label>
@@ -170,6 +177,7 @@
 
               <div id="notice" class="app-notice" role="status" aria-live="polite" hidden></div>
 
+              <!-- Task table -->
               <div class="app-table-wrapper">
                 <table class="app-table" id="task-table">
                   <thead>
@@ -189,6 +197,7 @@
                 </table>
               </div>
 
+              <!-- Pagination controls -->
               <div class="app-pagination">
                 <button class="govuk-button app-show-more" id="show-more" type="button" hidden>
                   Show more
@@ -205,18 +214,21 @@
       </div>
     </main>
 
+    <!-- Site footer -->
     <footer class="govuk-footer">
       <div class="govuk-width-container">
         <p class="govuk-footer__meta">Task API frontend sample. GOV.UK styling inspired layout.</p>
       </div>
     </footer>
 
+    <!-- No-JS fallback -->
     <noscript>
       <div class="app-notice app-notice--warning">
         JavaScript is required to load tasks from the API.
       </div>
     </noscript>
 
+    <!-- App script -->
     <script src="/static/app.js?v=3" defer></script>
   </body>
 </html>
