@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html class="govuk-template" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Edit task - GOV.UK style</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Edit a task">
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/edit.css">
+  </head>
+  <body class="govuk-template__body">
+    <a class="govuk-skip-link" href="#content">Skip to main content</a>
+
+    <header class="govuk-header" role="banner">
+      <div class="govuk-width-container govuk-header__container">
+        <div class="govuk-header__logo">
+          <span class="govuk-header__logotype">GOV.UK</span>
+          <span class="govuk-header__product-name">Task Service</span>
+        </div>
+      </div>
+    </header>
+
+    <main id="content" class="govuk-main-wrapper" role="main">
+      <div class="govuk-width-container">
+        <a class="govuk-link app-back-link" href="/">Back to tasks</a>
+        <h1 class="govuk-heading-xl">Edit task</h1>
+        <div id="notice" class="app-notice" role="status" aria-live="polite" hidden></div>
+
+        <section class="app-card">
+          <h2 class="govuk-heading-l">Task details</h2>
+          <form id="edit-form" class="app-form">
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="title">Title</label>
+              <input class="govuk-input" id="title" name="title" type="text" required>
+            </div>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="description">Description</label>
+              <textarea class="govuk-textarea" id="description" name="description" rows="4" placeholder="Optional"></textarea>
+            </div>
+
+            <div class="app-form-row">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="due_date">Due date</label>
+                <input class="govuk-input" id="due_date" name="due_date" type="date" required>
+              </div>
+
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="due_time">Due time</label>
+                <input class="govuk-input" id="due_time" name="due_time" type="time" required>
+              </div>
+
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="status">Status</label>
+                <select class="govuk-select" id="status" name="status">
+                  <option value="pending">Pending</option>
+                  <option value="in_progress">In progress</option>
+                  <option value="completed">Completed</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="app-button-group app-button-group--split">
+              <button class="govuk-button" type="submit">Save changes</button>
+              <button class="govuk-button govuk-button--warning" id="delete-task" type="button">
+                Delete task
+              </button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </main>
+
+    <footer class="govuk-footer">
+      <div class="govuk-width-container">
+        <p class="govuk-footer__meta">Task API frontend sample. GOV.UK styling inspired layout.</p>
+      </div>
+    </footer>
+    <script src="/static/edit.js" defer></script>
+  </body>
+</html>

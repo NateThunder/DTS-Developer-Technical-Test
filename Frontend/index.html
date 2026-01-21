@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html class="govuk-template" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Task manager - GOV.UK style</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Manage tasks with the FastAPI backend service">
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" sizes="any">
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body class="govuk-template__body">
+    <a class="govuk-skip-link" href="#content">Skip to main content</a>
+
+    <header class="govuk-header" role="banner">
+      <div class="govuk-width-container govuk-header__container">
+        <div class="govuk-header__logo">
+          <span class="govuk-header__logotype">GOV.UK</span>
+          <span class="govuk-header__product-name">Task Service</span>
+        </div>
+      </div>
+    </header>
+
+    <main id="content" class="govuk-main-wrapper" role="main">
+      <div class="govuk-width-container">
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds">
+            <h1 class="govuk-heading-xl">Task manager</h1>
+            <p class="govuk-body">
+            </p>
+
+            <aside class="govuk-contents-list" aria-label="Contents">
+              <h2 class="govuk-heading-m">Contents</h2>
+              <ol class="govuk-contents-list__list">
+                <li><a class="govuk-link" href="#create-task">Create a task</a></li>
+                <li><a class="govuk-link" href="#manage-tasks">Manage tasks</a></li>
+              </ol>
+            </aside>
+
+            <section id="create-task" class="app-card">
+              <h2 class="govuk-heading-l">Create a task</h2>
+              <p class="govuk-body">Use this form to add a new task. Due date and time are required.</p>
+
+              <form id="task-form" class="app-form">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="title">Title</label>
+                  <input class="govuk-input" id="title" name="title" type="text" required>
+                </div>
+
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="description">Description</label>
+                  <textarea class="govuk-textarea" id="description" name="description" rows="4" placeholder="Optional"></textarea>
+                </div>
+
+                <div class="app-form-row">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label" for="due_date">Due date</label>
+                    <input class="govuk-input" id="due_date" name="due_date" type="date" required>
+                  </div>
+
+                  <div class="govuk-form-group">
+                    <label class="govuk-label" for="due_time">Due time</label>
+                    <input class="govuk-input" id="due_time" name="due_time" type="time" required>
+                  </div>
+
+                  <div class="govuk-form-group">
+                    <label class="govuk-label" for="status">Status</label>
+                    <select class="govuk-select" id="status" name="status">
+                      <option value="pending">Pending</option>
+                      <option value="in_progress">In progress</option>
+                      <option value="completed">Completed</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="app-button-group">
+                  <button class="govuk-button" type="submit">Create task</button>
+                  <span id="form-message" class="govuk-hint" role="status" aria-live="polite"></span>
+                </div>
+              </form>
+            </section>
+
+            <section id="manage-tasks" class="app-card">
+              <div class="app-card__header">
+                <h2 class="govuk-heading-l">Manage tasks</h2>
+                <div class="app-meta">
+                  <span id="task-count" class="app-count">0 tasks</span>
+                </div>
+              </div>
+
+              <form id="filters" class="app-filters">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="search-id">Task ID</label>
+                  <input class="govuk-input" id="search-id" name="search-id" type="number" inputmode="numeric" min="1" step="1" placeholder="e.g. 42">
+                </div>
+
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="search-title">Name</label>
+                  <input class="govuk-input" id="search-title" name="search-title" type="search" placeholder="Task name">
+                </div>
+
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="filter-status-trigger">Status</label>
+                  <div class="app-dropdown" data-status-dropdown>
+                    <button
+                      class="govuk-select app-dropdown__button"
+                      id="filter-status-trigger"
+                      type="button"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                      aria-controls="filter-status-panel"
+                    >
+                      All statuses
+                    </button>
+                    <div
+                      class="app-dropdown__panel"
+                      id="filter-status-panel"
+                      role="group"
+                      aria-label="Status filters"
+                      hidden
+                    >
+                      <label class="app-checkbox">
+                        <input
+                          class="app-checkbox__input"
+                          type="checkbox"
+                          id="filter-status-all"
+                          data-status-all
+                          checked
+                        >
+                        <span>Select all</span>
+                      </label>
+                      <div class="app-dropdown__divider" role="presentation"></div>
+                      <label class="app-checkbox">
+                        <input
+                          class="app-checkbox__input"
+                          type="checkbox"
+                          value="pending"
+                          data-status-option
+                          checked
+                        >
+                        <span>Pending</span>
+                      </label>
+                      <label class="app-checkbox">
+                        <input
+                          class="app-checkbox__input"
+                          type="checkbox"
+                          value="in_progress"
+                          data-status-option
+                          checked
+                        >
+                        <span>In progress</span>
+                      </label>
+                      <label class="app-checkbox">
+                        <input
+                          class="app-checkbox__input"
+                          type="checkbox"
+                          value="completed"
+                          data-status-option
+                          checked
+                        >
+                        <span>Completed</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="app-button-group">
+                  <button class="govuk-button govuk-button--secondary" id="filters-reset" type="button">Reset</button>
+                </div>
+              </form>
+
+              <div id="notice" class="app-notice" role="status" aria-live="polite" hidden></div>
+
+              <div class="app-table-wrapper">
+                <table class="app-table" id="task-table">
+                  <thead>
+                    <tr>
+                      <th scope="col" aria-sort="none">
+                        <button class="app-sort-button" type="button" data-sort="id">ID</button>
+                      </th>
+                      <th scope="col" aria-sort="none">
+                        <button class="app-sort-button" type="button" data-sort="due_date">Due</button>
+                      </th>
+                      <th scope="col">Task</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="task-list" aria-live="polite"></tbody>
+                </table>
+              </div>
+
+              <div class="app-pagination">
+                <button class="govuk-button app-show-more" id="show-more" type="button" hidden>
+                  Show more
+                </button>
+                <a class="govuk-link app-back-to-top" id="back-to-top" href="#content" hidden>
+                  Back to top
+                </a>
+              </div>
+            </section>
+
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+    <footer class="govuk-footer">
+      <div class="govuk-width-container">
+        <p class="govuk-footer__meta">Task API frontend sample. GOV.UK styling inspired layout.</p>
+      </div>
+    </footer>
+
+    <noscript>
+      <div class="app-notice app-notice--warning">
+        JavaScript is required to load tasks from the API.
+      </div>
+    </noscript>
+
+    <script src="/static/app.js?v=3" defer></script>
+  </body>
+</html>
